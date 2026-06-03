@@ -1,0 +1,7 @@
+chroma_db/
+rag-qna/
+data/
+.env/
+__pycache__/
+*.pyc
+*.pyo
