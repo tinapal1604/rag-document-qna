@@ -15,3 +15,8 @@ Ask questions about any PDF using natural language.
 
 ## Setup
 ...
+## Evaluation (RAGAS)
+| Metric | Score |
+|--------|-------|
+| Faithfulness | 0.66 |
+| Answer Relevancy | 0.98 |

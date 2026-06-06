@@ -5,11 +5,18 @@ embedding_model = HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2"
 )
 
-def store_embeddings(chunks, persist_directory = "vectorstore"):
+def store_embeddings(chunks, persist_directory = "./chroma_db"):
+    import chromadb
+    client = chromadb.PersistentClient(path=persist_directory)
+    try:
+        client.delete_collection("rag-docs")
+    except ValueError:
+        pass
+
     vector_store = Chroma(
      collection_name="rag-docs",
      embedding_function=embedding_model,
-     persist_directory="./chroma_db"
+     persist_directory=persist_directory
     )
     vector_store.add_documents(chunks)
     return vector_store

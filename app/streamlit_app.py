@@ -17,8 +17,9 @@ for msg in st.session_state.history:
 if prompt := st.chat_input("Ask a question about your document..."):
     with st.chat_message("user"):
         st.write(prompt)
-    answer = ask(prompt, st.session_state.history)
+    result = ask(prompt, st.session_state.history)
     with st.chat_message("assistant"):
-        st.write(answer)
+        st.write(result["answer"])
+        st.write(f"Sources: pages {result["sources"]}")
     st.session_state.history.append({"role":"user", "content":prompt})
     st.session_state.history.append({"role":"assistant", "content":answer})

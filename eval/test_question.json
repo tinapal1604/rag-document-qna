@@ -1,0 +1,14 @@
+[
+    {
+        "question": "What is spatial autocorrelation?",
+        "ground_truth": "Spatial autocorrelation is a measure of dependency among points in a spatial context."
+    },
+    {
+        "question": "What is hotspot detection?",
+        "ground_truth": "Hotspot detection methods use domain information to accurately model more active and high-density areas."
+    },
+    {
+        "question": "What is spatial data mining?",
+        "ground_truth": "Spatial data mining is the process of discovering non-trivial, interesting and previously unknown patterns from large spatial databases."
+    }
+]

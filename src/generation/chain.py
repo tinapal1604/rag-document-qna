@@ -20,13 +20,15 @@ llm = ChatGroq(
 
 
 def ask(question: str, chat_history: list = None):
-    chunks = retriever(question, k=3)
+    if chat_history is None:
+        chat_history = []
+
     history_text = ""
     for msg in chat_history:
         role = msg["role"]
         content = msg["content"]
         history_text += f"{role}: {content}\n"
-
+    chunks = retriever(question, k=3)
     context = "\n\n".join([c.page_content for c in chunks])
     pages = sorted(set([cnk.metadata['page'] for cnk in chunks]))
 
@@ -38,8 +40,11 @@ def ask(question: str, chat_history: list = None):
     {question}
     '''
     response = llm.invoke(prompt)
-    answer = f'''\n\n Answer: {response.content}\n\n Source: {pages}'''
-    return answer
+    
+    return {
+        "answer": response.content,
+        "sources": sorted(set([c.metadata['page'] for c in chunks]))
+    }
 
 if __name__ == "__main__":
    history = []
