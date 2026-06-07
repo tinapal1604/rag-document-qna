@@ -1,22 +1,24 @@
 # RAG Document QA
 
-Ask questions about any PDF using natural language.
+Ask natural language questions over any PDF using open-source LLMs.
 
 ## Tech Stack
 - LangChain + ChromaDB
-- sentence-transformers (all-MiniLM-L6-v2)
-- Llama 3.3 via Groq
-- Python
+- Llama 3.3 via Groq (free)
+- sentence-transformers/all-MiniLM-L6-v2 (local embeddings)
+- FastAPI + Streamlit
+- Docker
 
-## How it works
-1. PDF is loaded, chunked and embedded locally
-2. User question is matched against chunks via similarity search
-3. Relevant chunks sent to Llama 3.3 for answer generation
-
-## Setup
-...
 ## Evaluation (RAGAS)
 | Metric | Score |
 |--------|-------|
 | Faithfulness | 0.66 |
 | Answer Relevancy | 0.98 |
+
+## How to run
+1. Clone the repo
+2. Add GROQ_API_KEY to .env
+3. Run: docker-compose up
+
+## Architecture
+PDF → Chunking → Embedding → ChromaDB → Retrieval → Llama 3.3 → Answer
