@@ -13,3 +13,4 @@ datasets==2.20.0
 streamlit==1.36.0
 fastapi
 uvicorn
+Pillow==10.3.0
