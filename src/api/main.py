@@ -5,7 +5,11 @@ from chain import ask
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-app = FastAPI()
+app = FastAPI(
+    title="RAG Document QNA",
+    description="Ask natural language questions over PDF documents",
+    version="1.0.0"
+)
 
 class QuestionRequest(BaseModel):
     question: str
