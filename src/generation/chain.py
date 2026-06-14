@@ -4,17 +4,18 @@ sys.path.append("src/ingestion")
 
 import warnings
 warnings.filterwarnings("ignore")
-
+import streamlit as st
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from retriever import retriever
 
 load_dotenv()
 
+groq_key = st.secrets.get("GROQ_API_KEY", os.getenv("GROQ_API_KEY"))
 
 llm = ChatGroq(
     model="llama-3.3-70b-versatile",
-    api_key=os.getenv("GROQ_API_KEY"),
+    api_key=groq_key,
     temperature=0
 )
 
